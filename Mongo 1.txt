@@ -1,4 +1,4 @@
-1.Find all the Products
+1.Find all the information about each products
 products> db.products.find({})
 [
   {
@@ -207,8 +207,12 @@ products> it
   }
 ]
 
+/------------------------------------------------------------/
+
 2.Find the product price which are between 400 to 800
+
 products>db.products.find({product_price :{$gt:400,$lt:800}})
+
 [
   {
     _id: ObjectId("63612e8740b574033f5aeea1"),
@@ -251,6 +255,8 @@ products>db.products.find({product_price :{$gt:400,$lt:800}})
     product_color: 'pink'
   }
 ]
+
+/-------------------------------------------------------------/
 
 3.Find the product price which are not between 400 to 600
 db.products.find({"product_price":{ $not:{$gt:400, $lt:600} } })
@@ -437,6 +443,9 @@ products> it
     product_color: 'indigo'
   }
 ]
+
+/-----------------------------------------------------------/
+
 4.List the four product which are greater than 500 in price 
 products> db.products.find({product_price : {$gt :500}})
 [
@@ -465,17 +474,14 @@ products> db.products.find({product_price : {$gt :500}})
     product_color: 'gold'
   }
 ]
+
+/------------------------------------------------------------------/
+
 5.Find the product name and product material of each products
 products> db.products.find({},{product_name:1,product_material:1,_id:0})
 [
-  {
-    product_name: 'Intelligent Fresh Chips',
-    product_material: 'Concrete'
-  },
-  {
-    product_name: 'Practical Fresh Sausages',
-    product_material: 'Cotton'
-  },
+  {product_name: 'Intelligent Fresh Chips',product_material: 'Concrete'},
+  {product_name: 'Practical Fresh Sausages',product_material: 'Cotton'},
   { product_name: 'Refined Steel Car', product_material: 'Rubber' },
   { product_name: 'Gorgeous Plastic Pants', product_material: 'Soft' },
   { product_name: 'Sleek Cotton Chair', product_material: 'Fresh' },
@@ -504,6 +510,9 @@ products> it
   { product_name: 'Tasty Rubber Cheese', product_material: 'Frozen' },
   { product_name: 'Licensed Steel Car', product_material: 'Cotton' }
 ]
+
+/-----------------------------------------------------------------------/
+
 6.Find the product with a row id of 10
 
 products> db.products.find({id:"10"})
@@ -518,6 +527,7 @@ products> db.products.find({id:"10"})
   }
 ]
 
+/---------------------------------------------------------------------/
 
 7.Find all products which contain the value of soft in product material 
 products>  db.products.find ({"product_material" :/soft/i})
@@ -556,9 +566,14 @@ NOTE: i here denotes caseinsensitive
     product_color: 'azure'
   }
 ]
+
+/-----------------------------------------------------------------------------------/
+
 8.Find products which contain product color indigo  and product price 492.00
 products>  db.products.find({product_color:{"$in":["indigo"]},product_price:{"$in":[492]}})
 NOTE: NO Products Found
+
+/----------------------------------------------------------------------------------/
 
 9.Delete the products which product price value are same
 db.products.aggregate([
